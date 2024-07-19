@@ -2,7 +2,7 @@
     <div class="container mx-auto">
       <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Products</h1>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div v-for="product in products" :key="product.id" class="border p-4 rounded-lg shadow-lg bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:translate-x-[-5px] hover:translate-y-[-3px] flex flex-col">
+        <div v-for="product in products" :key="product.id" name="product" class="border p-4 rounded-lg shadow-lg bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:translate-x-[-5px] hover:translate-y-[-3px] flex flex-col">
           <img :src="product.image_url" alt="Product Image" class="w-full h-48 object-cover mb-4 rounded-t-lg" />
           <h2 class="text-xl font-semibold text-gray-800">{{ product.name }}</h2>
           <p class="text-gray-600">{{ product.description }}</p>
@@ -30,7 +30,7 @@ export default {
     data() {
         return {
             products: [],
-            isAddingToCart: false // Add a flag to track the button state
+            isAddingToCart: false
         }
     },
     computed: {
@@ -55,14 +55,14 @@ export default {
             return product.inventory <= 0
         },
         async addToCart(product) {
-            if (this.isAddingToCart) return // Prevent multiple rapid clicks
+            if (this.isAddingToCart) return
 
             this.isAddingToCart = true
             const quantityToAdd = 1
             console.log(product.inventory)
             if (product.inventory > 0) {
                 await this.$store.dispatch('addToCart', { product, quantity: quantityToAdd })
-                product.inventory -= quantityToAdd // Decrement the inventory
+                product.inventory -= quantityToAdd
             } else {
                 alert('Cannot add more than available stock')
             }
