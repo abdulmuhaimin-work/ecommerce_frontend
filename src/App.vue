@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <nav class="bg-gray-800 p-4 fixed w-full z-10">
+    <nav class="bg-gradient-to-r from-black to-indigo-600 p-4 fixed w-full z-10 shadow-lg">
       <div class="container mx-auto flex justify-between items-center">
         <div class="text-white text-lg font-bold">
-          <router-link to="/" class="mr-4">Home</router-link>
+          <router-link to="/" class="mr-4 hover:text-gray-200">Home</router-link>
         </div>
         <div class="relative">
-          <button @click="toggleCartDropdown" class="text-white flex items-center">
+          <button @click="toggleCartDropdown" class="text-white flex items-center hover:text-gray-200">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m5-9v9m4-9v9m4-9l2 9"></path>
             </svg>

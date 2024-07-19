@@ -1,23 +1,25 @@
 <template>
     <div class="container mx-auto">
-        <h1 class="text-2xl font-bold mb-4">Products</h1>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div v-for="product in products" :key="product.id" class="border p-4 rounded">
-                <img :src="product.image_url" alt="Product Image" class="w-full h-48 object-cover mb-4" />
-                <h2 class="text-xl font-semibold">{{ product.name }}</h2>
-                <p>{{ product.description }}</p>
-                <p class="font-bold">{{ $filters.currency(product.price) }}</p>
-                <p v-if="product.inventory === 0" class="text-red-500 font-bold">Out of Stock</p>
-                <p v-else>In Stock: {{ product.inventory }}</p>
-                <button @click="addToCart(product)" :disabled="isOutOfStock(product)"
-                    :class="{ 'bg-gray-500': isOutOfStock(product), 'bg-blue-500': !isOutOfStock(product) }"
-                    class="text-white px-4 py-2 rounded">
-                    Add to Cart
-                </button>
-            </div>
+      <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Products</h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div v-for="product in products" :key="product.id" class="border p-4 rounded-lg shadow-lg bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:translate-x-[-5px] hover:translate-y-[-3px] flex flex-col">
+          <img :src="product.image_url" alt="Product Image" class="w-full h-48 object-cover mb-4 rounded-t-lg" />
+          <h2 class="text-xl font-semibold text-gray-800">{{ product.name }}</h2>
+          <p class="text-gray-600">{{ product.description }}</p>
+          <p class="font-bold text-gray-800">{{ $filters.currency(product.price) }}</p>
+          <p v-if="product.inventory === 0" class="text-red-500 font-bold">Out of Stock</p>
+          <p v-else class="text-green-500">In Stock: {{ product.inventory }}</p>
+          <div class="mt-auto">
+            <button @click="addToCart(product)" :disabled="isOutOfStock(product)"
+              :class="{ 'bg-gray-500': isOutOfStock(product), 'bg-indigo-500': !isOutOfStock(product) }"
+              class="text-white px-4 py-2 rounded mt-4 w-full">
+              Add to Cart
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</template>
+  </template>
 
 <script>
 import axios from 'axios'
