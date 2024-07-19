@@ -23,3 +23,7 @@ pnpm-debug.log*
 *.sw?
 .yarnrc.yml
 .yarnrc
+.pnp.cjs
+.pnp.loader.mjs
+.pnp.loader.cjs
+.yarn
